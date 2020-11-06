@@ -25,6 +25,20 @@ We plot weight (`wt`) vs. mileage (`mpg`) spatially along the x/y axes. We
 visualize the number of cylinders (`cyl`) as colors and the amount of
 horsepower (`hp`) as the size of an individual point in the plot.
 
+accidents <- fread("data/Accidents0514.csv", header = TRUE, 
+                       sep = ",")
+accidents <- accidents %>%
+  select(Accident_Severity, Date)
+
+accidents1 <- fread("data/Accidents_2015.csv", header = TRUE, 
+                     sep = ",")
+accidents1 <- accidents1 %>%
+  select(Accident_Severity, Date)
+
+# concatenate data tables and free up environment
+accidents <- rbind(accidents, accidents1)
+rm(list = c("accidents", "accidents1"))
+
 ## Visualizing the Data
 
 ```{r plot, echo=FALSE}
